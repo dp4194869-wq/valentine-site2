@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine Proposal Card</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            overflow: hidden;
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            color: white;
+            font-size: 15px;
+            animation: sparkleMove 3s linear infinite;
+        }
+
+        @keyframes sparkleMove {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0; }
+        }
+
+        .card {
+            background: #fdfdfd;
+            width: 350px;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 15px #fff; }
+            to { box-shadow: 0 0 30px #ff4d6d; }
+        }
+
+        .card img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #ff4d6d;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background: #ff6f91;
+            color: white;
+            position: relative;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Popup Animation */
+        .popup {
+            font-size: 22px;
+            color: #ff0066;
+            margin-top: 15px;
+            animation: pop 0.6s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="teddy.jpg" alt="Teddy">
+
+        <h2>Will you be my Valentine? 💌</h2>
+        <p>Think carefully 🥺 & Please Say YES</p>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="showMessage()">Yes 💖</button>
+            <button id="noBtn" onmouseover="moveButton()">No 😜</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").innerHTML =
+            "<div class='popup'>Yayyyy ❤️ You are Mine Forever 😍💞✨ I LOVEE YOUUUU SO MUCH MY LOVE,MY EVERYTHING.THANK YOU FOR CHHOSING ME.</div>";
+        }
+
+        function moveButton() {
+            var button = document.getElementById("noBtn");
+            var x = Math.random() * 200 - 100;
+            var y = Math.random() * 100 - 50;
+            button.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // Sparkle Generator
+        function createSparkle() {
+            var sparkle = document.createElement("div");
+            sparkle.classList.add("sparkle");
+            sparkle.innerHTML = "✨";
+            sparkle.style.left = Math.random() * window.innerWidth + "px";
+            sparkle.style.top = window.innerHeight + "px";
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        setInterval(createSparkle, 300);
+    </script>
+
+</body>
+</html>

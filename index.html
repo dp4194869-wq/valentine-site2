@@ -28,12 +28,12 @@
         }
 
         .card {
-            background: #fdfdfd;
-            width: 350px;
-            padding: 30px;
-            border-radius: 25px;
+            background: #f5f5f5;
+            width: 600px;
+            padding: 75px;
+            border-radius: 50px;
             text-align: center;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0px 10px 50px rgba(0,0,0,0.2);
             animation: glow 2s infinite alternate;
         }
 
@@ -77,7 +77,7 @@
         #noBtn {
             background: #ff6f91;
             color: white;
-            position: relative;
+            position: absolute;
         }
 
         #yesBtn:hover {
@@ -109,7 +109,7 @@
 
         <div class="buttons">
             <button id="yesBtn" onclick="showMessage()">Yes 💖</button>
-            <button id="noBtn" onmouseover="moveButton()">No 😜</button>
+            <button id="noBtn">No 😜</button>
         </div>
 
         <div id="message"></div>
@@ -118,15 +118,28 @@
     <script>
         function showMessage() {
             document.getElementById("message").innerHTML =
-            "<div class='popup'>Yayyyy ❤️ You are Mine Forever 😍💞✨ I LOVEE YOUUUU SO MUCH MY LOVE,MY EVERYTHING.THANK YOU FOR CHHOSING ME.</div>";
+            "<div class='popup'>Yayyyy ❤️ You are Mine Forever 😍💞✨ I LOVEE YOUUUU SO MUCH MY LOVE.</div>";
         }
 
-        function moveButton() {
-            var button = document.getElementById("noBtn");
-            var x = Math.random() * 200 - 100;
-            var y = Math.random() * 100 - 50;
-            button.style.transform = `translate(${x}px, ${y}px)`;
-        }
+       function moveButton() {
+    var button = document.getElementById("noBtn");
+
+    var x = Math.random() * (window.innerWidth - button.offsetWidth);
+    var y = Math.random() * (window.innerHeight - button.offsetHeight);
+
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+// Hover pe bhaage
+document.getElementById("noBtn").addEventListener("mouseover", moveButton);
+
+// Click pe bhi bhaage
+document.getElementById("noBtn").addEventListener("click", function(event) {
+    event.preventDefault();
+    moveButton();
+}); 
 
         // Sparkle Generator
         function createSparkle() {
@@ -148,3 +161,4 @@
 
 </body>
 </html>
+
